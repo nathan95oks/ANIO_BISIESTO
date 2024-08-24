@@ -3,9 +3,12 @@ function esBisiesto(ano) {
       return true;
     } else if (ano % 100 === 0) {
       return false;
-    } else {
+    } else if (ano % 4 === 0) {
       return true;
+    } else {
+      return false;
     }
   }
   
   module.exports = esBisiesto;
+  
