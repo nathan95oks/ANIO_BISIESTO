@@ -1,15 +1,60 @@
-<html>
-  <body>
-    <h1>Sumador</h1>
-    <form id="sumar-form">
-      <label for="primer-numero">Primer número:</label>
-      <input type="number" id="primer-numero" />
-      <label for="segundo-numero">Segundo número:</label>
-      <input type="number" id="segundo-numero" />
-      <input type="submit" value="Sumar" id="sumar-button" />
-    </form>
-    <div id="resultado-div"></div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprobador de Años Bisiestos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        input, button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 5px;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comprobador de Años Bisiestos</h1>
+    <p>Introduce un año para comprobar si es bisiesto:</p>
+    <input type="number" id="inputYear" placeholder="Escribe un año" />
+    <button onclick="comprobarBisiesto()">Comprobar</button>
+    <div class="resultado" id="resultado"></div>
 
-    <script type="module" src="./src/presenter.js"></script>
-  </body>
+    <script>
+        // Copiamos la función esBisiesto desde bisiesto.js
+        function esBisiesto(ano) {
+            if (ano % 400 === 0) {
+                return true;
+            } else if (ano % 100 === 0) {
+                return false;
+            } else if (ano % 4 === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function comprobarBisiesto() {
+            const ano = document.getElementById('inputYear').value;
+            const esBisiestoResult = esBisiesto(parseInt(ano));
+            const resultadoDiv = document.getElementById('resultado');
+            if (esBisiestoResult) {
+                resultadoDiv.textContent = `El año ${ano} es bisiesto.`;
+                resultadoDiv.style.color = "green";
+            } else {
+                resultadoDiv.textContent = `El año ${ano} no es bisiesto.`;
+                resultadoDiv.style.color = "red";
+            }
+        }
+    </script>
+</body>
 </html>
